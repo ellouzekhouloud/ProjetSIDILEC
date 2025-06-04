@@ -1,0 +1,23 @@
+# Ignorer les répertoires de build
+target/
+build/
+
+# Ignorer les fichiers et dossiers IDE
+.idea/
+*.iml
+
+# Git
+.git/
+.gitignore
+
+# Logs
+*.log
+
+# Fichiers temporaires
+*.zip
+*.tar.gz
+*.rar
+*.tmp
+
+# Node ou autres s’ils sont là par erreur
+node_modules/

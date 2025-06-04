@@ -1,0 +1,69 @@
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header text-primary">
+    <h5 class="card-title mb-0">Quantités par Fournisseur</h5>
+
+    <div class="row mb-3 align-items-center">
+
+      <!-- Filtre période personnalisée -->
+      <!-- Choix du mode de filtre -->
+      <div class="col-auto">
+        <label class="form-label mb-0">Mode de filtre</label><br />
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="modeFiltre" id="filtreCustom" value="custom" [(ngModel)]="modeFiltre" (change)="onModeChange()">
+          <label class="form-check-label" for="filtreCustom">Période personnalisée</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="modeFiltre" id="filtreStandard" value="standard" [(ngModel)]="modeFiltre" (change)="onModeChange()">
+          <label class="form-check-label" for="filtreStandard">Filtre période</label>
+        </div>
+      </div>
+
+      <!-- Période personnalisée -->
+      <div class="col-auto" *ngIf="modeFiltre === 'custom'">
+        <label class="form-label mb-0">Période personnalisée</label><br />
+        <input type="date" class="form-control d-inline-block me-2" style="width: 160px;" [(ngModel)]="startDate"
+               (ngModelChange)="onCustomDateChange()" placeholder="Date début" />
+        <input type="date" class="form-control d-inline-block" style="width: 160px;" [(ngModel)]="endDate"
+               (ngModelChange)="onCustomDateChange()" placeholder="Date fin" />
+      </div>
+
+      <!-- Filtre période standard -->
+      <div class="col-auto" *ngIf="modeFiltre === 'standard'">
+        <label class="form-label mb-0">Filtre période</label>
+        <select [(ngModel)]="typePeriode" (ngModelChange)="onStandardFilterChange()" class="form-select mb-2">
+          <option value="">-- Sélectionner --</option>
+          <option value="month">Mois</option>
+          <option value="quarter">Trimestre</option>
+          <option value="semester">Semestre</option>
+          <option value="year">Année</option>
+        </select>
+
+        <!-- Date pour le filtre standard -->
+        <div *ngIf="typePeriode">
+          <input type="month" class="form-control" [(ngModel)]="dateFiltre" (ngModelChange)="onStandardFilterChange()" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="export-menu">
+      <div class="menu-icon" (click)="toggleMenu()" title="Exporter">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <path fill="none" d="M0 0h24v24H0V0z"></path>
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+        </svg>
+      </div>
+
+      <div class="menu-options" *ngIf="menuOpen">
+        <button (click)="downloadExcel()">Télécharger Excel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="chart-container">
+      <canvas id="dashboardChart"></canvas>
+    </div>
+  </div>
+</div>
