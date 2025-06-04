@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: sidilec-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: controle_Qualite
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - sidilec-network
+
+  backend:
+    build: 
+      context: ./backend/BackendSidilec
+    container_name: backend-sidilec
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+       # Ajoute un path absolu pour l'upload
+       FILE_UPLOAD_DIR: /app/uploads
+    volumes:
+      - uploads:/app/uploads
+    networks:
+      - sidilec-network
+  
+  frontend:
+    build:
+      context: ./frontend/Sidilec
+    container_name: frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: sidilec-phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - mysql
+    networks:
+      - sidilec-network
+
+volumes:
+  mysql_data:
+  uploads:
+
+networks:
+  sidilec-network:
+    driver: bridge
