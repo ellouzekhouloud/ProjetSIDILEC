@@ -25,12 +25,6 @@ pipeline {
             }
         }
 
-        //stage('🧪 Tests unitaires') {
-           // steps {
-                sh 'mvn test'
-           // }
-       // }
-
         stage('🐳 Build Docker') {
             steps {
                 sh 'docker build -t backend-sidilec ./backend/BackendSidilec'
