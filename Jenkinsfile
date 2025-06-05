@@ -11,9 +11,8 @@ pipeline {
         SPRING_DATASOURCE_USERNAME = 'root'
         SPRING_DATASOURCE_PASSWORD = 'root'
     }
-       
 
-    
+    stages {
         stage('Debug Git Branch') {
             steps {
                 sh 'git branch -a'
