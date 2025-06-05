@@ -11,11 +11,12 @@ pipeline {
         SPRING_DATASOURCE_USERNAME = 'root'
         SPRING_DATASOURCE_PASSWORD = 'root'
     }
+       
 
-    stages {
-        stage('📦 Cloner le projet') {
+    
+        stage('Debug Git Branch') {
             steps {
-                git 'https://github.com/ellouzekhouloud/ProjetSIDILEC.git'
+                sh 'git branch -a'
             }
         }
 
