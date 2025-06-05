@@ -15,25 +15,25 @@ pipeline {
     stages {
         stage('Debug Git Branch') {
             steps {
-                sh 'git branch -a'
+                bat 'git branch -a'
             }
         }
 
         stage('🔨 Compilation Maven') {
             steps {
-                sh 'cd backend/BackendSidilec && mvn clean package -DskipTests'
+                bat 'cd backend\\BackendSidilec && mvn clean package -DskipTests'
             }
         }
 
         stage('🐳 Build Docker') {
             steps {
-                sh 'docker build -t backend-sidilec ./backend/BackendSidilec'
+                bat 'docker build -t backend-sidilec backend\\BackendSidilec'
             }
         }
 
         stage('📦 Lancer avec Docker Compose') {
             steps {
-                sh 'docker-compose -f docker-compose.yml up -d --build'
+                bat 'docker-compose -f docker-compose.yml up -d --build'
             }
         }
     }
