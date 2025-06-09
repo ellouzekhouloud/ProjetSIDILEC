@@ -34,8 +34,16 @@ pipeline {
 
         stage('📦 Lancer avec Docker Compose') {
             steps {
-                bat 'docker-compose --env-file .env -f docker-compose.yml down'
-                bat 'docker-compose --env-file .env -f docker-compose.yml up -d --build'
+                dir('D:/ProjetSidilecPFE2025') {
+                    // Arrêt et suppression complète
+                    bat 'docker-compose --env-file .env -f docker-compose.yml down -v'
+
+                    // Reconstruction complète des images
+                    bat 'docker-compose --env-file .env -f docker-compose.yml build --no-cache'
+
+                    // Démarrage
+                    bat 'docker-compose --env-file .env -f docker-compose.yml up -d'
+                }
             }
         }
     }
