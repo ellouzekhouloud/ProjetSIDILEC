@@ -19,6 +19,12 @@ pipeline {
             }
         }
 
+        stage('✅ Tests unitaires') {
+            steps {
+                bat 'cd backend\\BackendSidilec && mvn test'
+            }
+        }
+
         stage('🔨 Compilation Maven') {
             steps {
                 bat 'cd backend\\BackendSidilec && mvn clean package -DskipTests'

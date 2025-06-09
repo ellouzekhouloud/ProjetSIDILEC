@@ -20,7 +20,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 @RestController
 @RequestMapping("/api/messages")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class MessageController {
 	@Autowired
 	private SimpMessagingTemplate messagingTemplate;

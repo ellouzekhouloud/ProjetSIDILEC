@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/controles")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 public class ControleController {
     @Autowired
     private ControleService controleService;

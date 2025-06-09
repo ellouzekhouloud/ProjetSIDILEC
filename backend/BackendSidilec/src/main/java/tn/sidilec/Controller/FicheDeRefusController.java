@@ -15,7 +15,7 @@ import tn.sidilec.service.FicheDeRefusService;
 import java.util.List;
 @RestController
 @RequestMapping("/api/fichesRefus")
-@CrossOrigin(origins = "http://localhost:4200")  
+@CrossOrigin(origins = "*")  
 public class FicheDeRefusController {
 public FicheDeRefusController() {
 	
