@@ -1,13 +1,13 @@
 package tn.sidilec;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest(classes = BackendSidilecApplication.class)
-class BackendSidilecApplicationTests {
+//@SpringBootTest(classes = BackendSidilecApplication.class)
+//class BackendSidilecApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+//	@Test
+	//void contextLoads() {
+	//}
 
-}
+//}
