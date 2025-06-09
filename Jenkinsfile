@@ -13,12 +13,7 @@ pipeline {
     }
 
     stages {
-        stage('Debug Git Branch') {
-            steps {
-                bat 'git branch -a'
-            }
-        }
-
+        
         stage('✅ Tests unitaires') {
             steps {
                 bat 'cd backend\\BackendSidilec && mvn test'
@@ -39,6 +34,7 @@ pipeline {
 
         stage('📦 Lancer avec Docker Compose') {
             steps {
+                bat 'docker-compose -f docker-compose.yml down' // Nettoyage
                 bat 'docker-compose -f docker-compose.yml up -d --build'
             }
         }
