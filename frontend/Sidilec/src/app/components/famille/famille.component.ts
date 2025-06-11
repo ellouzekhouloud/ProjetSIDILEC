@@ -49,28 +49,37 @@ export class FamilleComponent implements OnInit {
   }
 
   ajouterFamille(): void {
-    if (!this.newFamille.nomFamille || this.newFamille.nomFamille.trim() === '') {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Champ requis',
-        text: 'Le nom de la famille est requis.'
-      });
-      return;
-    }
-
-    this.familleService.addFamille(this.newFamille).subscribe({
-      next: () => {
-        Swal.fire('Succès', 'Famille ajoutée avec succès.', 'success').then(() => {
-          this.loadFamilles();
-          this.addModal.hide();
-        });
-      },
-      error: err => {
-        console.error('Erreur ajout famille :', err);
-        Swal.fire('Erreur', "Erreur lors de l'ajout de la famille.", 'error');
-      }
+  if (!this.newFamille.nomFamille || this.newFamille.nomFamille.trim() === '') {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Champ requis',
+      text: 'Le nom de la famille est requis.'
     });
+    return;
   }
+
+  this.familleService.addFamille(this.newFamille).subscribe({
+    next: () => {
+       Swal.fire({
+                icon: 'success',
+                title: 'Succès',
+                text: 'Famille ajoutée avec succès!',
+                showConfirmButton: false,
+                timer: 1500
+              });
+
+      this.loadFamilles();
+      this.addModal.hide();
+      this.newFamille = {}; // réinitialiser le formulaire
+    },
+    error: err => {
+      console.error('Erreur ajout famille :', err);
+      // ❌ Laisser l'erreur avec bouton OK
+      Swal.fire('Erreur', "Erreur lors de l'ajout de la famille.", 'error');
+    }
+  });
+}
+
 
   ouvrirModalModification(famille: Famille): void {
     this.familleEnCours = { ...famille };

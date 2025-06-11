@@ -7,4 +7,26 @@
   .modal-open {
     overflow: hidden;
   }
-  
+  /* Définir une largeur minimale pour chaque colonne pour plus de lisibilité */
+th:nth-child(2), td:nth-child(2) { /* Nom */
+  min-width: 150px;
+}
+th:nth-child(3), td:nth-child(3) { /* Certificat */
+  min-width: 160px;
+}
+th:nth-child(4), td:nth-child(4) { /* Email */
+  min-width: 180px;
+}
+th:nth-child(5), td:nth-child(5) { /* Adresse */
+  min-width: 200px;
+}
+th:nth-child(6), td:nth-child(6) { /* Téléphone */
+  min-width: 120px;
+}
+th:nth-child(7), td:nth-child(7) { /* Actions */
+  min-width: 160px;
+  text-align: center;
+}
+table td:last-child {
+  text-align: center;
+}
