@@ -14,25 +14,25 @@ pipeline {
 
     stages {
         
-        stage('✅ Tests unitaires') {
+        stage('Unit Test') {
             steps {
                 bat 'cd backend\\BackendSidilec && mvn test'
             }
         }
 
-        stage('🔨 Compilation Maven') {
+        stage('Build Artifact') {
             steps {
                 bat 'cd backend\\BackendSidilec && mvn clean package -DskipTests'
             }
         }
 
-        stage('🐳 Build Docker') {
+        stage(' Build Docker') {
             steps {
                 bat 'docker build -t backend-sidilec backend\\BackendSidilec'
             }
         }
 
-        stage('📦 Lancer avec Docker Compose') {
+        stage('Deploy') {
             steps {
                 bat 'docker-compose --env-file .env -f docker-compose.yml down'
                 bat 'docker-compose --env-file .env -f docker-compose.yml up -d --build'

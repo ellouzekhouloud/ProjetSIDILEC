@@ -36,7 +36,7 @@ itemsPerPage: number = 4;
       certificat: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       adresse: ['', Validators.required],
-      telephone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+      telephone: ['', [Validators.required, Validators.pattern(/^[\d\s()+-]+$/)]]
     });
   }
 
