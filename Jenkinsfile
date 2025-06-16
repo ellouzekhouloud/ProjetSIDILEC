@@ -29,6 +29,8 @@ pipeline {
         stage(' Build Docker') {
             steps {
                 bat 'docker build -t backend-sidilec backend\\BackendSidilec'
+                
+                bat 'docker build -t frontend-sidilec frontend\\Sidilec'
             }
         }
 
